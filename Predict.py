@@ -1,3 +1,4 @@
+# Imports here
 import numpy as np
 import pandas
 import matplotlib
@@ -66,8 +67,8 @@ hyperparameters = { 'image_dir': arguments.image_path,
 cat_file_name = hyperparameters['category_dir']
 with open(cat_file_name, 'r') as f:
     cat_to_name = json.load(f)
-print("{} flower category labels mapped to  category names in the  list below:".format(len(cat_to_name)))
-cat_to_name
+print("{} flower category labels mapped to  category names :".format(len(cat_to_name)))
+
 
 # Write a function that loads a checkpoint and rebuilds the model
 def load_checkpoint(checkpoint_dir):
@@ -81,7 +82,7 @@ def load_checkpoint(checkpoint_dir):
 
 model = load_checkpoint(hyperparameters['checkpoint_dir'])
 device = torch.device('cpu')
-print(model)
+
 
 
 def process_image(image_path):
@@ -123,7 +124,7 @@ def process_image(image_path):
 
 # Implement the code to predict the class from an image file
 
-def predict(model,image_path,topk = 5):
+def predict(image_path,model,topk = 5):
     ''' Predict the class (or classes) of an image using a trained deep learning model.
     '''
         # Implement the code to predict the class from an image file
@@ -160,8 +161,8 @@ def predict(model,image_path,topk = 5):
     top_classes = [idx_to_class[index] for index in top_indices]
     
     return top_probabilities, top_classes    
-
-probs, classes = predict('flowers/test/15/image_06351.jpg',model)  
+# Plot the probabilities for the top 5 classes and the respective flower name
+probs, classes = predict('flowers/test/1/image_06743.jpg',model)  
 flower_names = [cat_to_name[i] for i in classes]
 print(probs)
 print(classes)
